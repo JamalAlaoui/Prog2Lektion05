@@ -11,7 +11,12 @@ public class Person {
         this.surname = surname;
     }
 
-    public void printName(NameFormatter formatter) {
-        System.out.println(formatter.format(firstName, middleName, surname));
+    public String printName(NameFormatter formatter) {
+
+        String formattednavn = formatter.format(firstName, middleName, surname);
+        System.out.println(formattednavn);
+        return formattednavn;
     }
-}
+
+
+    }

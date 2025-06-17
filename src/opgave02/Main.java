@@ -10,11 +10,86 @@ public class Main {
         addPeople(peopleArray);
         System.out.println();
 
-        //Den første person der hedder Klaus
-        System.out.println("Den første person der hedder Klaus: " + peopleArray.findFirst(p -> p.getName().equals("Klaus")));
-        //Den første person der har et navn med længden 4
-        System.out.println("Den første person der har et navn med længden 4: " + peopleArray.findFirst(p -> p.getName().length() == 4));
-        //Indsæt kode herunder der kalder metoderne findFirst og findAll som beskrevet i opgave 1
+
+        peopleArray.findFirst(person -> {
+            if (person.getAge() == 44) {
+                System.out.println(person);
+                return true;
+            }
+            return false;
+        });
+
+        peopleArray.findFirst(person -> {
+            if (person.getName().charAt(0) == 'S') {
+                System.out.println(person);
+                return true;
+            }
+            return false;
+        });
+
+        peopleArray.findFirst(person -> {
+            int antalIer = 0;
+            String navn = person.getName();
+
+            for (int i = 0; i < navn.length(); i++) {
+                if (navn.charAt(i) == 'i') {
+                    antalIer++;
+
+                    if (antalIer == 2) {
+                        System.out.println(person);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
+
+
+        peopleArray.findFirst(person -> {
+            String navn = person.getName();
+            int alder = person.getAge() -1 ;
+            for (int i = 0; i < navn.length() ; i++) {
+
+                if (i == alder){
+                    System.out.println(person);
+                    return true;
+                }
+            }
+
+            return false;
+        });
+
+
+
+
+        // ------------ ny del af opgaven, her skal vi finde ALLE personer som opfylder vores lambda-funktion, og en ny metode der returner en liste, fremfor en person er oprettet i Person-klassen
+
+
+        List<Person> peopleWithanI = peopleArray.findAll(person -> {
+            String navn = person.getName();
+            for (int i = 0; i < navn.length(); i++) {
+                if (navn.charAt(i) == 'i') {
+
+                    return true;
+                }
+            }
+
+            return false;
+
+        });
+        System.out.println(peopleWithanI);
+
+
+        List<Person> peopleWithAnS = peopleArray.findAll(person -> {
+
+            if(person.getName().charAt(0) == 'S'){
+                return true;
+            }
+
+            return false;
+        });
+        System.out.println(peopleWithAnS);
+
 
     }
 

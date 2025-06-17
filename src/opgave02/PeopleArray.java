@@ -2,6 +2,7 @@ package opgave02;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class PeopleArray {
     private List<Person> people = new ArrayList<>();
@@ -19,7 +20,7 @@ public class PeopleArray {
      * that satisfies the predicate.
      * Returns null, if no person satisfies the predicate.
      */
-    public Person findFirst(PersonPredicate filter) {
+    public Person findFirst(Predicate<Person> filter) {
         for (Person person : people) {
             if (filter.test(person)) {
                 return person;
@@ -27,4 +28,18 @@ public class PeopleArray {
         }
         return null;
     }
+
+    public List<Person> findAll (Predicate<Person> filter){
+        List<Person> resultatListe = new ArrayList<>();
+        for (Person person : people) {
+            if (filter.test(person)){
+                // tilføj person til liste
+                resultatListe.add(person);
+            }
+        }
+
+        return resultatListe;
+    }
 }
+
+
